@@ -18,16 +18,18 @@ export default function LeftPanelMain({
     'Europe',
     'Oceania',
   ];
-  const handleRegions = (event) => {
+  const handleRegions = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const regionClicked = (event.target as HTMLButtonElement).textContent!;
     setSelectedRegion((prevRegions) => {
-      const index = prevRegions.indexOf(event.target.textContent);
+      const index = prevRegions.indexOf(regionClicked);
       if (index !== -1) {
         return [
           ...prevRegions.slice(0, index),
           ...prevRegions.slice(index + 1),
         ];
       }
-      return [...prevRegions, event.target.textContent];
+      return [...prevRegions, regionClicked];
     });
   };
   return (

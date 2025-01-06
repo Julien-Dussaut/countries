@@ -13,6 +13,11 @@ interface MainProps {
   setSelectedRegion: React.Dispatch<React.SetStateAction<string[]>>;
   setDisplayTotal: React.Dispatch<React.SetStateAction<number>>;
   displayTotal: number;
+  setSelectedCountry: React.Dispatch<
+    React.SetStateAction<ICountry | undefined>
+  >;
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
 }
 export default function Main({
   totalCountries,
@@ -23,13 +28,20 @@ export default function Main({
   setSelectedRegion,
   setDisplayTotal,
   displayTotal,
+  setSelectedCountry,
+  searchValue,
+  setSearchValue,
 }: MainProps) {
   const updateDisplay = () => {
     setDisplayTotal(displayTotal + 10);
   };
   return (
     <main className="main">
-      <HeaderMain totalCountries={totalCountries} />
+      <HeaderMain
+        totalCountries={totalCountries}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
       <section className="main-filter-and-data">
         <LeftPanelMain
           setFilter={setFilter}
@@ -37,7 +49,10 @@ export default function Main({
           selectedRegion={selectedRegion}
           setSelectedRegion={setSelectedRegion}
         />
-        <ContentPanelMain countries={countries} />
+        <ContentPanelMain
+          countries={countries}
+          setSelectedCountry={setSelectedCountry}
+        />
         <button className="button-more" type="button" onClick={updateDisplay}>
           Load more
         </button>

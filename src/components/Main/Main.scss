@@ -1,5 +1,135 @@
 @use '../../styles/variables' as v;
 
+.country-details {
+  &-back {
+    border: none;
+    color: v.$color-light-grey;
+    background-color: v.$color-grey;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    position: fixed;
+    top: 60%;
+    left: 10%;
+    z-index: 30;
+    text-decoration: none;
+    &:hover {
+      background-color: v.$color-light-grey;
+      color: v.$color-grey;
+      cursor: pointer;
+    }
+  }
+  position: relative;
+  box-shadow: 0 0 15px v.$color-deep-black;
+  top: 35vh;
+  width: 50%;
+  z-index: 2;
+  border: 1px solid v.$color-grey;
+  background-color: v.$color-deep-black;
+  min-height: 70vh;
+  margin: 0 auto;
+  margin-bottom: 10vh;
+  border-radius: 1rem;
+  color: v.$color-light-grey;
+  &-img {
+    border-radius: 1rem;
+    width: auto;
+    margin: 0 auto;
+    position: relative;
+    top: -5vh;
+  }
+  h1,
+  h2 {
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  &-poparea {
+    width: 80%;
+    margin: 3rem auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &-infos {
+      width: 40%;
+      height: 5vh;
+      padding: 0.4rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      background-color: v.$color-light-black;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      hr {
+        border: 1px solid v.$color-deep-black;
+        height: 100%;
+      }
+    }
+  }
+  &-infos {
+    &-item {
+      padding: 1rem 3rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid v.$color-grey;
+      span {
+        margin-left: auto;
+      }
+      &:nth-last-child(1) {
+        border-bottom: 1px solid v.$color-grey;
+      }
+    }
+  }
+  &-borders {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    width: 100%;
+    &-title {
+      width: 100%;
+      padding: 1rem 2rem;
+      font-weight: lighter;
+    }
+    &-info {
+      width: 15%;
+      &-img {
+        height: 50%;
+        width: auto;
+        margin: auto;
+      }
+      p {
+        text-align: center;
+      }
+    }
+  }
+}
+@media screen and (max-width: 640px) {
+  .country-details {
+    width: 100%;
+    border: none;
+    top: 15vh;
+    &-back {
+      top: 5vh;
+      left: 1vh;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .country-details {
+    width: 80%;
+    top: 30vh;
+    &-back {
+      top: 5vh;
+      left: 1vh;
+    }
+  }
+}
 .main {
   position: relative;
   top: 30vh;
@@ -34,6 +164,7 @@
         background-color: inherit;
         border: none;
         width: 100%;
+        color: v.$color-light-grey;
         &:focus {
           outline: none;
           color: v.$color-grey;
@@ -122,7 +253,7 @@
     grid-row-start: 1;
     grid-column-start: 2;
     display: grid;
-    grid-template-columns: 0.5fr 1.5fr 0.5fr 0.5fr 0.5fr;
+    grid-template-columns: repeat(5, 1fr);
     row-gap: 1rem;
     &-img {
       width: 60%;
@@ -149,5 +280,23 @@
   &:hover {
     cursor: pointer;
     background-color: v.$color-light-black;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .md-none {
+    // color: red;
+    display: none;
+  }
+  .main-filter-and-data {
+    // grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+  .main-content-data {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .main-header-form {
+    width: 50%;
   }
 }
