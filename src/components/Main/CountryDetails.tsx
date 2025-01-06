@@ -4,11 +4,15 @@ import ICountry from '../../@types/ICountry.d';
 interface CountryDetailsProps {
   selectedCountry: ICountry;
   bordersCountry: ICountry[];
+  setSelectedCountry: React.Dispatch<
+    React.SetStateAction<ICountry | undefined>
+  >;
 }
 
 export default function CountryDetails({
   selectedCountry,
   bordersCountry,
+  setSelectedCountry,
 }: CountryDetailsProps) {
   function getCapital() {
     return selectedCountry.capital[0];
@@ -86,12 +90,18 @@ export default function CountryDetails({
               key={border.name.common}
               className="country-details-borders-info"
             >
-              <img
-                src={border.flags.png}
-                alt={border.flags.alt}
-                className="country-details-borders-info-img"
-              />
-              <p>{border.name.common}</p>
+              <Link
+                to={`/country/${border.name.common}`}
+                style={{ display: 'contents' }}
+                onClick={() => setSelectedCountry(border)}
+              >
+                <img
+                  src={border.flags.png}
+                  alt={border.flags.alt}
+                  className="country-details-borders-info-img"
+                />
+                <p>{border.name.common}</p>
+              </Link>
             </aside>
           ))}
         </section>

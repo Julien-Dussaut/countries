@@ -3,6 +3,7 @@ import HeaderMain from './HeaderMain';
 import LeftPanelMain from './LeftPanelMain';
 import ContentPanelMain from './ContentPanelMain';
 import ICountry from '../../@types/ICountry.d';
+import IMembers from '../../@types/IMembers.d';
 
 interface MainProps {
   totalCountries: number;
@@ -18,6 +19,8 @@ interface MainProps {
   >;
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  members: IMembers;
+  setMembers: React.Dispatch<React.SetStateAction<IMembers>>;
 }
 export default function Main({
   totalCountries,
@@ -31,6 +34,8 @@ export default function Main({
   setSelectedCountry,
   searchValue,
   setSearchValue,
+  members,
+  setMembers,
 }: MainProps) {
   const updateDisplay = () => {
     setDisplayTotal(displayTotal + 10);
@@ -48,6 +53,8 @@ export default function Main({
           filter={filter}
           selectedRegion={selectedRegion}
           setSelectedRegion={setSelectedRegion}
+          members={members}
+          setMembers={setMembers}
         />
         <ContentPanelMain
           countries={countries}

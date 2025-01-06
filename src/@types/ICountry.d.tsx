@@ -15,6 +15,7 @@ export default interface ICountry {
     svg: string;
     alt: string;
   };
+  independent: boolean;
   languages: {
     [key: string]: string;
   };
@@ -31,4 +32,5 @@ export default interface ICountry {
   population: number;
   region: string;
   subregion: string;
+  unMember: boolean;
 }

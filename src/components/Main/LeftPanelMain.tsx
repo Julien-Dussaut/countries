@@ -1,14 +1,20 @@
+import IMembers from '../../@types/IMembers.d';
+
 interface LeftPanelMainProps {
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   filter: string;
   selectedRegion: string[];
   setSelectedRegion: React.Dispatch<React.SetStateAction<string[]>>;
+  members: IMembers;
+  setMembers: React.Dispatch<React.SetStateAction<IMembers>>;
 }
 export default function LeftPanelMain({
   setFilter,
   filter,
   selectedRegion,
   setSelectedRegion,
+  members,
+  setMembers,
 }: LeftPanelMainProps) {
   const regions = [
     'Americas',
@@ -71,6 +77,35 @@ export default function LeftPanelMain({
               </button>
             ))}
           </aside>
+        </fieldset>
+        <fieldset className="main-left-form-member">
+          <p className="main-left-form-member-label-title">Status</p>
+          <label className="main-left-form-member-choice">
+            <input
+              type="checkbox"
+              checked={members.un}
+              onChange={() =>
+                setMembers({
+                  un: !members.un,
+                  independent: members.independent,
+                })
+              }
+            />
+            Member of the United Nations
+          </label>
+          <label className="main-left-form-member-choice">
+            <input
+              type="checkbox"
+              checked={members.independent}
+              onChange={() =>
+                setMembers({
+                  un: members.un,
+                  independent: !members.independent,
+                })
+              }
+            />
+            Independent
+          </label>
         </fieldset>
       </form>
     </section>

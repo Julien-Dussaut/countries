@@ -7,11 +7,16 @@ import './App.scss';
 import ICountry from '../../@types/ICountry.d';
 import Footer from './Footer/Footer';
 import CountryDetails from '../Main/CountryDetails';
+import IMembers from '../../@types/IMembers.d';
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [countries, setCountries] = useState<ICountry[]>([]);
   const [selectedCountry, setSelectedCountry] = useState<ICountry>();
+  const [members, setMembers] = useState<IMembers>({
+    un: true,
+    independent: true,
+  });
   const [bordersCountry, setBordersCountry] = useState<ICountry[]>([]);
   const [countriesToDisplay, setCountriesToDisplay] = useState<ICountry[]>([]);
   const [totalCountries, setTotalCountries] = useState<number>(0);
@@ -30,11 +35,11 @@ function App() {
   const getCountries = async () => {
     try {
       const result = await axios.get(
-        'https://restcountries.com/v3.1/all?fields=name,population,flags,area,region,capital,subregion,currencies,languages,continents,borders,cca3'
+        'https://restcountries.com/v3.1/all?fields=name,population,flags,area,region,capital,subregion,currencies,languages,continents,borders,cca3,independent,unMember'
         // 'https://restcountries.com/v3.1/all'
       );
       setCountries(result.data);
-      // console.log(result.data);
+      console.log(result.data);
       setTotalCountries(result.data.length);
     } catch (error) {
       // console.log(error);
@@ -90,9 +95,16 @@ function App() {
       return selectedRegion.includes(country.region);
     });
 
-    setCountriesToDisplay(countryByRegion.slice(0, displayTotal));
+    const countryByMember = countryByRegion.filter((country) => {
+      return (
+        country.unMember === members.un &&
+        country.independent === members.independent
+      );
+    });
+
+    setCountriesToDisplay(countryByMember.slice(0, displayTotal));
     setTotalCountries(countryByRegion.length);
-  }, [countries, displayTotal, filter, selectedRegion, searchValue]);
+  }, [countries, displayTotal, filter, selectedRegion, searchValue, members]);
 
   useEffect(() => {
     const borders = countries.filter((country) => {
@@ -159,6 +171,8 @@ function App() {
                   setSelectedCountry={setSelectedCountry}
                   searchValue={searchValue}
                   setSearchValue={setSearchValue}
+                  members={members}
+                  setMembers={setMembers}
                 />
                 <Footer />
               </>
@@ -173,6 +187,7 @@ function App() {
                   <CountryDetails
                     selectedCountry={selectedCountry}
                     bordersCountry={bordersCountry}
+                    setSelectedCountry={setSelectedCountry}
                   />
                 )}
                 <Footer />

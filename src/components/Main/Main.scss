@@ -32,6 +32,7 @@
   color: v.$color-light-grey;
   &-img {
     border-radius: 1rem;
+    border: 1px solid v.$color-grey;
     width: auto;
     margin: 0 auto;
     position: relative;
@@ -104,6 +105,7 @@
         margin: auto;
       }
       p {
+        color: v.$color-light-grey;
         text-align: center;
       }
     }
@@ -201,6 +203,7 @@
   &-left-form-region {
     border: none;
     display: flex;
+    margin: 2rem 0;
     flex-direction: column;
     justify-content: space-around;
     &-label {
@@ -240,6 +243,25 @@
         cursor: pointer;
         color: v.$color-light-grey;
         background-color: v.$color-light-black;
+      }
+    }
+  }
+  &-left-form-member {
+    margin: 2rem 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    color: v.$color-light-grey;
+    &-label-title {
+      width: 100%;
+      font-size: 1.2rem;
+      color: v.$color-grey;
+    }
+    &-choice {
+      margin: 0.5rem;
+      input[type='checkbox'] {
+        margin-right: 2rem;
+        transform: scale(1.5);
       }
     }
   }
